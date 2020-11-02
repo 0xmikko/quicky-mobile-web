@@ -1,33 +1,36 @@
 /*
- * Lunachat - sattelite chat based on NuCypher
- * Copyright (c) 2020. Mikhail Lazarev
+ * Copyright (c) 2020, Mikael Lazarev
  */
 
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Text} from 'react-native-elements';
+import {Avatar, Text} from 'react-native-elements';
 import {Contact} from '../../entities/contactEntity';
-import {SmartAvatar} from 'rn-mobile-components';
 
-interface ContactCardProps {
+interface ContactListItemProps {
   data: Contact;
-  selectContact: (id: string) => void;
+  onSelect: (id: string) => void;
 }
 
-export const ContactCard: React.FC<ContactCardProps> = ({
+export function ContactListItem({
   data,
-  selectContact,
-}) => {
-  const title = data.firstName + " " + data.lastName
+  onSelect,
+}: ContactListItemProps): React.ReactElement {
+  const title = data.firstName + ' ' + data.lastName;
 
   return (
     <TouchableOpacity
-      onPress={() => selectContact(data.id.toString())}
+      onPress={() => onSelect(data.id.toString())}
       style={{marginTop: -1}}>
       <View style={styles.container}>
         <View>
           <View style={{paddingTop: 3}}>
-            <SmartAvatar name={title} />
+            <Avatar
+                title={data.firstName.slice(0, 1) + data.lastName.slice(0, 1)}
+                size={'medium'}
+                containerStyle={{backgroundColor: '#999999'}}
+                rounded
+            />
           </View>
         </View>
         <View style={styles.textContainer}>
@@ -39,7 +42,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
       </View>
     </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -68,5 +71,3 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
-
-export default ContactCard;

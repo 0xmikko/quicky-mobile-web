@@ -1,46 +1,60 @@
 /*
- * Lunachat - sattelite chat based on NuCypher
- * Copyright (c) 2020. Mikhail Lazarev
+ * Copyright (c) 2020, Mikael Lazarev
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import actions from '../../store/actions';
 import {useDispatch, useSelector} from 'react-redux';
-import {ContactList} from '../../containers/Contacts/ContactList';
 import {useNavigation} from '@react-navigation/native';
-import {operationSelector} from 'redux-data-connect';
-import {DataScreen} from 'rn-mobile-components';
 import {contactsListSelector} from '../../store/contacts';
+import {DataListView} from 'rn-mobile-components/lib/DataListView';
+import {ContactListItem} from '../../containers/Contacts/ContactListItem';
+import {SafeAreaView, View} from 'react-native';
+import {commonStyles} from '../../styles';
+import {Text, SearchBar} from 'react-native-elements';
+import {ContactDataManager} from "../../entities/contactEntity";
 
 export function ContactsListScreen(): React.ReactElement {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [hash, setHash] = useState('0');
 
+  const dispatch = useDispatch();
   const data = useSelector(contactsListSelector);
-  const operation = useSelector(operationSelector(hash));
 
-  const getList = () => {
-    const newHash = Date.now().toString();
-    dispatch(actions.contacts.getList(newHash));
-    setHash(newHash);
+  const [search, setSearch] = useState('');
+
+  const filteredData =
+      search === '' ? data : ContactDataManager.search(data, search);
+
+
+  const getList = (opHash: string) => {
+    dispatch(actions.contacts.getList(opHash));
   };
 
-  useEffect(() => {
-    getList();
-  }, []);
-
   const onSelect = async (id: string) => {
-    navigation.navigate('ContactsDetailsScreen', {id});
+    navigation.navigate('ContactDetailsScreen', {id});
   };
 
   return (
-    <DataScreen
-      data={data || []}
-      status={operation?.status}
-      component={ContactList}
-      onSelect={onSelect}
-      onRefresh={() => getList()}
-    />
+    <SafeAreaView style={commonStyles.safeAreaContainer}>
+      <View>
+        <Text h1>Contacts</Text>
+      </View>
+      <SearchBar
+          placeholder="Type Here..."
+          onChangeText={setSearch}
+          value={search}
+          lightTheme={true}
+          round={true}
+          // containerStyle={{backgroundColor: 'red'}}
+          // text={search}
+          // searchBarStyle={'minimal'}
+      />
+      <DataListView
+        data={filteredData || []}
+        getList={getList}
+        renderItem={ContactListItem}
+        onSelect={onSelect}
+      />
+    </SafeAreaView>
   );
 }

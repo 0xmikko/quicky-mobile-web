@@ -6,11 +6,12 @@ import React from 'react';
 import {Profile} from '../../core/profile';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ContactsListScreen} from './ContactsListScreen';
+import {ContactDetailsScreen} from './ContactDetailsScreen';
 
 const Stack = createStackNavigator();
 
-export type SettingsStackParamList = {
-  ChangeNameScreen: {data: Profile};
+export type ContactsStackParamList = {
+  ContactDetailsScreen: {id: string};
 };
 
 export function ContactsStack(): React.ReactElement {
@@ -22,6 +23,10 @@ export function ContactsStack(): React.ReactElement {
         options={{
           header: () => null,
         }}
+      />
+      <Stack.Screen
+        name="ContactDetailsScreen"
+        component={ContactDetailsScreen}
       />
     </Stack.Navigator>
   );

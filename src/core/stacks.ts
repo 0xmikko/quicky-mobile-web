@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020, Mikael Lazarev
+ */
+
 import React from 'react';
 import {EntityType} from "./appEntity";
 import {ContactsStack} from "../screens/Contacts/ContactsStack";

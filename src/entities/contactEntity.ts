@@ -3,6 +3,7 @@
  */
 
 import {Field} from '../core/field';
+import {isContain} from '../helpers/search';
 
 export interface Contact {
   id: string;
@@ -48,5 +49,14 @@ export class ContactDataManager {
       if (elm.id === id) return elm;
     }
     return undefined;
+  }
+
+  static search(data: Contact[], search: string): Contact[] {
+    return data.filter(
+      (d) =>
+        isContain(d.firstName, search) ||
+        isContain(d.lastName, search) ||
+        isContain(d.email, search),
+    );
   }
 }

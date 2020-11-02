@@ -11401,7 +11401,7 @@ react-native@0.63.2:
     use-subscription "^1.0.0"
     whatwg-fetch "^3.0.0"
 
-react-redux@^7.2.1:
+react-redux@^7.2.1, react-redux@^7.2.2:
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.2.tgz#03862e803a30b6b9ef8582dadcc810947f74b736"
   integrity sha512-8+CQ1EvIVFkYL/vu6Olo7JFLWop1qRUeb46sGtIMDCSpgwPQq8fPLpirIB0iTqFe9XYEFPHssdX8/UwN6pAkEA==
@@ -11998,13 +11998,15 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rn-mobile-components@^1.0.21:
-  version "1.0.27"
-  resolved "https://registry.yarnpkg.com/rn-mobile-components/-/rn-mobile-components-1.0.27.tgz#2ec7824c6f8c771ebaac3636224d705c6bf25545"
-  integrity sha512-TyuL0hUjRtKyMGGRGFvMT+5bnUDqgrEqV4nvGiatM9/5v0foGif39cm5tERcaRbhrYfHCNyCIvpqz9LxpEXKmA==
+rn-mobile-components@^1.0.33:
+  version "1.0.33"
+  resolved "https://registry.yarnpkg.com/rn-mobile-components/-/rn-mobile-components-1.0.33.tgz#8d0adeddeff632bab89257673d5fe5a70389c5f1"
+  integrity sha512-u9Q3GCAp9d2AwMeu1en5syLahhNNHcQ4ZduuL8daA9dKVqI1tnmR7kiuS5P3B65XjIYEVxHi8DlYQifHzPMmOw==
   dependencies:
     "@babel/plugin-transform-react-jsx" "^7.10.4"
+    "@types/react-redux" "^7.1.9"
     formik "^2.1.4"
+    react-redux "^7.2.2"
     redux-data-connect "^1.1.6"
     yup "^0.28.4"
 
