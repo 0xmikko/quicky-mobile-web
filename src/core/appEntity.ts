@@ -4,7 +4,7 @@
 
 import {Field} from "./field";
 
-export type EntityType = "Contact" | "Settings";
+export type EntityType = "Contact" | "Project" | "Settings";
 
 export interface AppEntity {
     name: string;
