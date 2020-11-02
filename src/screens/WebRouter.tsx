@@ -2,17 +2,16 @@
  * Copyright (c) 2020, Mikael Lazarev
  */
 
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { appSelector } from "../store/app";
-import actions from "../store/actions";
-import { LoadingView } from "rn-mobile-components";
-import { SplashScreen } from "./Welcome/SplashScreen";
-import { TabBar, TabBarItem } from "../components/TabBar";
-import { ContactsList } from "../containers/Contacts/ContactsList";
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {appSelector} from '../store/app';
+import actions from '../store/actions';
+import {LoadingView} from 'rn-mobile-components';
+import {SplashScreen} from './Welcome/SplashScreen';
+import {TabBar} from '../components/TabBar';
 
 export function WebRouter(): React.ReactElement {
-  const [hash, setHash] = useState("0");
+  const [hash, setHash] = useState('0');
   const dispatch = useDispatch();
   useEffect(() => {
     const newHash = Date.now().toString();
@@ -22,20 +21,14 @@ export function WebRouter(): React.ReactElement {
 
   const app = useSelector(appSelector);
 
-  console.log("APPDATTA::", app);
+  console.log('APPDATTA::', app);
   // const appData = apps[app.name];
-  if (app.entities !== undefined && app.entities.length !== 0) {
-    const buttons: Array<TabBarItem> = app.entities.map((e) => ({
-      name: e.name,
-      icon: e.icon,
-      component: ContactsList,
-    }));
-
+  if (app.tabs.length !== 0) {
     return (
       <TabBar
-        buttons={buttons}
-        activeColor={""} //appData.activeColor}
-        inactiveColor={""} //appData.inactiveColor}
+        buttons={app.tabs}
+        activeColor={''} //appData.activeColor}
+        inactiveColor={''} //appData.inactiveColor}
       />
     );
   }

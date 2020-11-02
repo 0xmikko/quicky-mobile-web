@@ -4,7 +4,7 @@
 
 import io from 'socket.io-client';
 import {RootState} from './index';
-import {ThunkMiddleware} from 'redux-thunk';
+import {ThunkAction, ThunkMiddleware} from 'redux-thunk';
 import {Action, Dispatch} from 'redux';
 import {BACKEND_ADDR} from '../config';
 import {actionsAfterAuth} from './actions';
@@ -27,6 +27,7 @@ export interface SocketEmitAction {
 export interface SocketOnAction {
   type: 'SOCKET_ON';
   event: string;
+  handler?: (payload: any) => ThunkAction<void, RootState, unknown, Action>;
   typeOnSuccess: string;
 }
 
@@ -145,10 +146,14 @@ export function createSocketMiddleware(): ThunkMiddleware<
               if (socket.hasListeners(action.event)) return;
               socket.on(action.event, (payload: any) => {
                 console.log('[SOCKET.IО] : GET NEW INFO : ', payload);
-                dispatch({
-                  type: action.typeOnSuccess,
-                  payload: payload,
-                });
+
+                if (action.handler !== undefined) {
+                  dispatch(action.handler(payload));
+                } else
+                  dispatch({
+                    type: action.typeOnSuccess,
+                    payload: payload,
+                  });
               });
               console.log('[SOCKET.IO] : LISTENER ADDED : ', action.event);
             });

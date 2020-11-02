@@ -2,36 +2,59 @@
  * Copyright (c) 2020, Mikael Lazarev
  */
 
-import { App } from "../../core/app";
-import { AppActions } from "./index";
+import {App} from '../../core/app';
+import {AppActions} from './index';
+import {TabBarItem} from '../../components/TabBar';
+import {AppEntity, EntityType} from "../../core/appEntity";
 
-export interface AppState extends App {}
+export interface AppState extends App {
+  entitiesMap: Record<string, AppEntity>
+  tabs: Array<TabBarItem>;
+  error?: string;
+}
 
 const initialState: AppState = {
-  id: "",
-  createdAt: Date.now(),
-  name: "",
-  company: "",
 
-  logoUrl: "",
+  id: '',
+  qbAppId: "",
+  qbHostName: "",
+  createdAt: Date.now(),
+  name: '',
+  company: '',
+
+  logoUrl: '',
   // SPLASH SCREEN
-  splashTitle: "",
-  splashTitleColor: "",
-  splashSubtitle: "",
-  splashSubtitleColor: "",
-  splashBackground: "",
+  splashTitle: '',
+  splashTitleColor: '',
+  splashSubtitle: '',
+  splashSubtitleColor: '',
+  splashBackground: '',
 
   entities: [],
+  entitiesMap: {},
 
+  tabs: []
 };
 
 export default function createReducer(
   state: AppState = initialState,
-  action: AppActions
+  action: AppActions,
 ): AppState {
   switch (action.type) {
-    case "APP_DETAILS":
-      return action.payload;
+    case 'APP_DETAILS':
+      return {
+        ...state,
+        ...action.payload.app,
+        entitiesMap: action.payload.entitiesMap,
+        tabs: action.payload.tabs,
+        error: undefined
+      };
+
+    case 'APP_DETAILS_FAILURE':
+      return {
+        ...state,
+        error: action.error || 'Network error',
+      };
   }
 
   return state;

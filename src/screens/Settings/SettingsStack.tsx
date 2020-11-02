@@ -14,7 +14,7 @@ export type SettingsStackParamList = {
   ChangeNameScreen: {data: Profile};
 };
 
-export const SettingsStack: React.FC = () => {
+export function SettingsStack() : React.ReactElement {
   return (
     <Stack.Navigator>
       <Stack.Screen

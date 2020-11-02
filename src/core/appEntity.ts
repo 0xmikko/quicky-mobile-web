@@ -4,16 +4,22 @@
 
 import {Field} from "./field";
 
-export type EntityTemplate = "Contact" | "Task" | "Project" | "Deal";
+export type EntityType = "Contact" | "Settings";
 
 export interface AppEntity {
     name: string;
 
     icon: string;
 
-    template: EntityTemplate;
+    template: EntityType;
 
-    schema: Map<string, Field>;
+    order: number;
+
+    schema: Record<string, Field>;
 
     additionalFields: Array<string>;
+
+    isDeployed: boolean;
+
+    dataMapper: Record<string, Field>;
 }
