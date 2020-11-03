@@ -3,15 +3,14 @@
  */
 
 import {Field} from "./field";
-
-export type EntityType = "Contact" | "Project" | "Settings";
+import {EntityType} from "./types";
 
 export interface AppEntity {
     name: string;
 
     icon: string;
 
-    template: EntityType;
+    type: EntityType;
 
     order: number;
 

@@ -5,9 +5,7 @@
 import * as app from './app/actions';
 import * as auth from './auth/actions';
 import * as chats from './chats/actions';
-import * as contacts from './contacts/actions';
 import * as profile from './profile/actions';
-import * as projects from './projects/actions';
 import * as operations from 'redux-data-connect/lib/operations/actions';
 import {ThunkAction} from 'redux-thunk';
 import {RootState} from './index';
@@ -17,9 +15,7 @@ export default {
   app,
   auth,
   chats,
-  contacts,
   profile,
-  projects,
   operations,
 };
 

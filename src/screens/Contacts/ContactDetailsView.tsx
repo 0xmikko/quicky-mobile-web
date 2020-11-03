@@ -5,7 +5,7 @@
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {Avatar, Text, Divider} from 'react-native-elements';
-import {Contact} from '../../entities/contactEntity';
+import {Contact} from '../../entities/contact';
 import {commonStyles} from '../../styles';
 import {CircleButtonProps} from '../../components/CircleButtons/CircleButton';
 import {CircleButtonBlock} from '../../components/CircleButtons/CircleButtonBlock';

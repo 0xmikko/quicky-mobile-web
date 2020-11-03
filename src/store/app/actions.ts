@@ -49,15 +49,15 @@ export const updateApp: (
 
   const tabs: Array<TabBarItem> = [];
   for (let e of sortedEntities) {
-    const stackComponent = stacks[e.template];
+    const stackComponent = stacks[e.type];
     if (stackComponent === undefined) {
       dispatch({
         type: 'APP_DETAILS_FAILURE',
-        error: `Unknown stack component${e.template}`,
+        error: `Unknown stack component${e.type}`,
       });
       return;
     }
-    entitiesMap[e.template] = e;
+    entitiesMap[e.type] = e;
     tabs.push({
       name: e.name,
       icon: e.icon,

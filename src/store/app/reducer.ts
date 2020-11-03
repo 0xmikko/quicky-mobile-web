@@ -5,7 +5,7 @@
 import {App} from '../../core/app';
 import {AppActions} from './index';
 import {TabBarItem} from '../../components/TabBar';
-import {AppEntity, EntityType} from "../../core/appEntity";
+import {AppEntity} from "../../core/appEntity";
 
 export interface AppState extends App {
   entitiesMap: Record<string, AppEntity>

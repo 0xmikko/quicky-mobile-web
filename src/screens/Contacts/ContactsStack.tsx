@@ -3,30 +3,28 @@
  */
 
 import React from 'react';
-import {Profile} from '../../core/profile';
 import {createStackNavigator} from '@react-navigation/stack';
-import {ContactsListScreen} from './ContactsListScreen';
-import {ContactDetailsScreen} from './ContactDetailsScreen';
+import {DMListScreen} from '../../containers/DataScreens/DMListScreen';
+import {EntityType} from '../../core/types';
+import {DMDetailsScreen} from '../../containers/DataScreens/DMDetailsScreen';
 
 const Stack = createStackNavigator();
 
-export type ContactsStackParamList = {
-  ContactDetailsScreen: {id: string};
-};
+const entityType: EntityType = 'Contact';
 
 export function ContactsStack(): React.ReactElement {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="ContactsListScreen"
-        component={ContactsListScreen}
+        name={`${entityType}sListScreen`}
+        component={() => <DMListScreen type={entityType} />}
         options={{
           header: () => null,
         }}
       />
       <Stack.Screen
-        name="ContactDetailsScreen"
-        component={ContactDetailsScreen}
+        name={`${entityType}DetailsScreen`}
+        component={() => <DMDetailsScreen type={entityType} />}
       />
     </Stack.Navigator>
   );

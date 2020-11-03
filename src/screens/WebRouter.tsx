@@ -13,6 +13,7 @@ import {TabBar} from '../components/TabBar';
 export function WebRouter(): React.ReactElement {
   const [hash, setHash] = useState('0');
   const dispatch = useDispatch();
+
   useEffect(() => {
     const newHash = Date.now().toString();
     dispatch(actions.app.getDetails(newHash));
@@ -21,8 +22,6 @@ export function WebRouter(): React.ReactElement {
 
   const app = useSelector(appSelector);
 
-  console.log('APPDATTA::', app);
-  // const appData = apps[app.name];
   if (app.tabs.length !== 0) {
     return (
       <TabBar

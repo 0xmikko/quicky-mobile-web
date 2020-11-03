@@ -6,31 +6,31 @@
  */
 
 import React from 'react';
-import {Profile} from '../../core/profile';
 import {createStackNavigator} from '@react-navigation/stack';
-import {ProjectsListScreen} from './ProjectsListScreen';
-import {ProjectDetailsScreen} from './ProjectDetailsScreen';
+import {EntityType} from "../../core/types";
+import {DMListScreen} from "../../containers/DataScreens/DMListScreen";
+import {DMDetailsScreen} from "../../containers/DataScreens/DMDetailsScreen";
+
+
+const entityType : EntityType = 'Project';
 
 const Stack = createStackNavigator();
 
-export type ProjectsStackParamList = {
-  ProjectDetailsScreen: {id: string};
-};
 
 export function ProjectsStack(): React.ReactElement {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="ProjectsListScreen"
-        component={ProjectsListScreen}
-        options={{
-          header: () => null,
-        }}
-      />
-      <Stack.Screen
-        name="ProjectDetailsScreen"
-        component={ProjectDetailsScreen}
-      />
+        <Stack.Screen
+            name={`${entityType}sListScreen`}
+            component={() => <DMListScreen type={entityType} />}
+            options={{
+                header: () => null,
+            }}
+        />
+        <Stack.Screen
+            name={`${entityType}DetailsScreen`}
+            component={() => <DMDetailsScreen type={entityType} />}
+        />
     </Stack.Navigator>
   );
 }

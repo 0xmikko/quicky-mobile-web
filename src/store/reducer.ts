@@ -6,16 +6,22 @@ import {combineReducers} from 'redux';
 import {authReducer, operationReducer} from 'redux-data-connect';
 import app from './app/reducer';
 import chats from './chats/reducer';
-import contacts from './contacts/reducer';
 import profile from './profile/reducer';
-import projects from './projects/reducer';
+import {entityTypesList} from "../core/types";
+import {AppDataManager} from "../core/dataManager";
+
+const dataManagerReducers : Record<string, any> = {}
+
+entityTypesList.forEach(t => {
+  const dataManager = AppDataManager.getManager(t);
+  dataManagerReducers[dataManager.getReduxIndex()] = dataManager.getReducer();
+})
 
 export default combineReducers({
   auth: authReducer,
   app,
   chats,
-  contacts,
   profile,
-  projects,
   operations: operationReducer,
+  ...dataManagerReducers,
 });

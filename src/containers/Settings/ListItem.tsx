@@ -4,38 +4,23 @@
 
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Avatar, Text} from 'react-native-elements';
-import {Contact} from '../../entities/contactEntity';
+import {Text} from 'react-native-elements';
+import {ListItemComponentProps} from "../../core/types";
+import {Settings} from "../../entities/setting";
 
-interface ContactListItemProps {
-  data: Contact;
-  onSelect: (id: string) => void;
-}
-
-export function ContactListItem({
+export function SettingListItem({
   data,
   onSelect,
-}: ContactListItemProps): React.ReactElement {
-  const title = data.firstName + ' ' + data.lastName;
+}: ListItemComponentProps<Settings>): React.ReactElement {
 
   return (
     <TouchableOpacity
       onPress={() => onSelect(data.id.toString())}
       style={{marginTop: -1}}>
       <View style={styles.container}>
-        <View>
-          <View style={{paddingTop: 3}}>
-            <Avatar
-                title={data.firstName.slice(0, 1) + data.lastName.slice(0, 1)}
-                size={'medium'}
-                containerStyle={{backgroundColor: '#999999'}}
-                rounded
-            />
-          </View>
-        </View>
         <View style={styles.textContainer}>
           <View>
-            <Text h4>{title}</Text>
+            <Text h4>{'Setting'}</Text>
             <Text>{data.id}</Text>
           </View>
         </View>
