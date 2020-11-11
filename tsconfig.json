@@ -13,12 +13,15 @@
     "noEmit": true,
     "isolatedModules": true,
     "strict": true,
+    "strictPropertyInitialization": false,  /* Enable strict checking of property initialization in classes. */
+
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "experimentalDecorators": true
   },
   "exclude": [
     "node_modules",

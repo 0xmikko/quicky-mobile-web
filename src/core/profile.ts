@@ -7,6 +7,7 @@ export interface Profile {
   name: string;
   avatar?: string;
   qbToken?: string;
+  hostName?: string;
 }
 
 export interface ProfileChangeNameDTO extends Record<string, string> {

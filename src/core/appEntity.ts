@@ -6,6 +6,11 @@ import {Field} from "./field";
 import {EntityType} from "./types";
 
 export interface AppEntity {
+
+    appId: string
+
+    tableId: string;
+
     name: string;
 
     icon: string;
@@ -20,5 +25,5 @@ export interface AppEntity {
 
     isDeployed: boolean;
 
-    dataMapper: Record<string, Field>;
+    dataMapper: Record<number, Field>;
 }

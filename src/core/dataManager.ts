@@ -4,9 +4,9 @@
 
 import {EntityType} from './types';
 import {ProjectDataManager} from '../entities/project';
-import {ContactDataManager} from '../entities/contact';
 import {EntityManager} from './entityManager';
 import {EntityManagerI} from "./entityManagerI";
+import {ContactDataManager} from "../entities/contactManager";
 
 export class AppDataManager {
   protected static _managers: Map<EntityType, EntityManager<any>> = new Map<

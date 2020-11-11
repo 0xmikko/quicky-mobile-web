@@ -7,7 +7,7 @@ import {EntityManager} from '../core/entityManager';
 import {ProjectListItem} from "../screens/Projects/ProjectsListItem";
 import {ProjectDetailsView} from "../screens/Projects/ProjectDetailsView";
 
-export interface Project {
+export class Project {
   id: string;
   name: string;
   status: string;
@@ -19,7 +19,7 @@ export interface Project {
 
 export class ProjectDataManager extends EntityManager<Project> {
   constructor() {
-    super('Project', ProjectListItem, ProjectDetailsView);
+    super('Project', Project, ProjectListItem, ProjectDetailsView);
     this._sampleData = [
       {
         id: 'P1',

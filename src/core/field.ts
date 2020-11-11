@@ -15,7 +15,7 @@ export type FieldType =
     | "currency";
 
 export interface Field {
-    id: string;
+    id: number;
     label: string;
     fieldType: FieldType;
     noWrap: boolean;
