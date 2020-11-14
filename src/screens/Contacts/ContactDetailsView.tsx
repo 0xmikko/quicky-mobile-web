@@ -2,14 +2,14 @@
  * Copyright (c) 2020, Mikael Lazarev
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {Avatar, Text, Divider} from 'react-native-elements';
 import {Contact} from '../../entities/contact';
 import {commonStyles} from '../../styles';
 import {CircleButtonProps} from '../../components/CircleButtons/CircleButton';
 import {CircleButtonBlock} from '../../components/CircleButtons/CircleButtonBlock';
-import {DataListItem} from "../../components/DataListItem";
+import {DataListItem} from '../../components/DataListItem';
 
 export interface ContactDetailsViewProps {
   data: Contact;
@@ -24,9 +24,19 @@ export function ContactDetailsView({
     {icon: 'call', title: 'Chat'},
     {icon: 'mail', title: 'Mail'},
   ];
+
+
+
+
+
+
+  const extraFields = data.additionalFields?.map(f =>
+      // @ts-ignore
+      <DataListItem name={f} value={data[f]} />)
+
   return (
     <SafeAreaView style={commonStyles.safeAreaContainer}>
-      <View style={{alignItems: 'center', paddingTop: '20px', width: '100%',}}>
+      <View style={{alignItems: 'center', paddingTop: '20px', width: '100%'}}>
         <Avatar
           title={data.firstName.slice(0, 1) + data.lastName.slice(0, 1)}
           size={'xlarge'}
@@ -37,13 +47,13 @@ export function ContactDetailsView({
           {data.firstName + ' ' + data.lastName}
         </Text>
         <CircleButtonBlock data={actions} />
-
       </View>
-        <View style={{marginTop: '25px'}}>
+      <View style={{marginTop: '25px'}}>
         <DataListItem name={'phone'} value={data.phone} />
         <DataListItem name={'mobile'} value={data.mobile} />
         <DataListItem name={'email'} value={data.email} />
-        </View>
+        {extraFields}
+      </View>
     </SafeAreaView>
   );
 }

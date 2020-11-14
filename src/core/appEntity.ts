@@ -19,11 +19,11 @@ export interface AppEntity {
 
     order: number;
 
-    schema: Record<string, Field>;
+    // schema: Record<string, Field>;
 
     additionalFields: Array<string>;
 
     isDeployed: boolean;
 
-    dataMapper: Record<number, Field>;
+    dataMapper: Record<string, Field>;
 }

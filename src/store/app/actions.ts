@@ -10,7 +10,7 @@ import {App} from '../../core/app';
 import {TabBarItem} from '../../components/TabBar';
 import {stacks} from '../../core/stacks';
 import {AppEntity} from '../../core/appEntity';
-import {AppActions} from "./index";
+import {AppActions} from './index';
 
 export const connectSocket = (): ThunkAction<
   void,
@@ -24,6 +24,12 @@ export const connectSocket = (): ThunkAction<
     handler: updateApp,
     event: 'app:updateDetails',
     typeOnSuccess: 'APP_DETAILS',
+  });
+  dispatch({
+    type: 'SOCKET_ON',
+    namespace,
+    event: 'app:switchToScreen',
+    typeOnSuccess: 'APP_SCREEN',
   });
 };
 

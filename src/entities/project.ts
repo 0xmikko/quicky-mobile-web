@@ -22,7 +22,7 @@ export class ProjectDataManager extends EntityManager<Project> {
     super('Project', Project, ProjectListItem, ProjectDetailsView);
     this._sampleData = [
       {
-        id: 'P1',
+        id: '0',
         name: 'QB Hackathon',
         status: 'In progress',
         priority: 'High',
@@ -31,7 +31,7 @@ export class ProjectDataManager extends EntityManager<Project> {
         finishDate: Date.parse('16-11-2020'),
       },
       {
-        id: 'P2',
+        id: '1',
         name: 'QB Hackathon',
         status: 'In progress',
         priority: 'High',

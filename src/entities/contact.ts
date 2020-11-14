@@ -10,5 +10,8 @@ export class Contact {
   address: string;
   phone: string;
   mobile: string;
+
+  additionalFields?: Array<string>
+
 }
 

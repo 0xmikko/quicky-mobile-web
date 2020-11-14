@@ -7,9 +7,10 @@ import {Contact} from "./contact";
 export class ContactDataManager extends EntityManager<Contact> {
   constructor() {
     super('Contact', Contact,  ContactListItem, ContactDetailsView);
+
     this._sampleData = [
       {
-        id: '1',
+        id: '0',
         firstName: 'Joe',
         lastName: 'Cocker',
         email: 'koo@koo.ru',
@@ -18,7 +19,7 @@ export class ContactDataManager extends EntityManager<Contact> {
         mobile: '+1 800 233-3344',
       },
       {
-        id: '2',
+        id: '1',
         firstName: 'Joe',
         lastName: 'Cocker',
         email: 'koo@koo.ru',

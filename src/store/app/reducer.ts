@@ -5,19 +5,19 @@
 import {App} from '../../core/app';
 import {AppActions} from './index';
 import {TabBarItem} from '../../components/TabBar';
-import {AppEntity} from "../../core/appEntity";
+import {AppEntity} from '../../core/appEntity';
 
 export interface AppState extends App {
-  entitiesMap: Record<string, AppEntity>
+  entitiesMap: Record<string, AppEntity>;
   tabs: Array<TabBarItem>;
+  screen?: string;
   error?: string;
 }
 
 const initialState: AppState = {
-
   id: '',
-  qbAppId: "",
-  qbHostName: "",
+  qbAppId: '',
+  qbHostName: '',
   createdAt: Date.now(),
   name: '',
   company: '',
@@ -33,7 +33,7 @@ const initialState: AppState = {
   entities: [],
   entitiesMap: {},
 
-  tabs: []
+  tabs: [],
 };
 
 export default function createReducer(
@@ -47,7 +47,13 @@ export default function createReducer(
         ...action.payload.app,
         entitiesMap: action.payload.entitiesMap,
         tabs: action.payload.tabs,
-        error: undefined
+        error: undefined,
+      };
+    case 'APP_SCREEN':
+      return {
+        ...state,
+        screen: action.payload,
+        error: undefined,
       };
 
     case 'APP_DETAILS_FAILURE':
