@@ -25,14 +25,10 @@ export function ContactDetailsView({
     {icon: 'mail', title: 'Mail'},
   ];
 
-
-
-
-
-
-  const extraFields = data.additionalFields?.map(f =>
-      // @ts-ignore
-      <DataListItem name={f} value={data[f]} />)
+  const extraFields = data.additionalFields?.map((f) => (
+    // @ts-ignore
+    <DataListItem name={f} value={data[f]} />
+  ));
 
   return (
     <SafeAreaView style={commonStyles.safeAreaContainer}>
@@ -43,9 +39,10 @@ export function ContactDetailsView({
           containerStyle={{backgroundColor: '#999999'}}
           rounded
         />
-        <Text h2 style={{marginTop: '15px', paddingBottom: '15px'}}>
+        <Text h2 style={{marginTop: '15px', paddingBottom: '5px'}}>
           {data.firstName + ' ' + data.lastName}
         </Text>
+        <Text style={{fontSize: 16, paddingBottom: '15px'}}>{data.company}</Text>
         <CircleButtonBlock data={actions} />
       </View>
       <View style={{marginTop: '25px'}}>

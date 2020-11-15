@@ -57,7 +57,7 @@ export const SplashScreen: React.FC = () => {
       </View>
       <View style={styles.button}>
         <Button
-          title="Checkky"
+          title="Login / Signup"
           onPress={onLoginPressed}
           type="outline"
           buttonStyle={{borderColor: '#FFF'}}

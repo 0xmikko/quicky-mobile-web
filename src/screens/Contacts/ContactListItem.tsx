@@ -32,7 +32,7 @@ export function ContactListItem({
         <View style={styles.textContainer}>
           <View>
             <Text h4>{title}</Text>
-            <Text>{data.id}</Text>
+            <Text>{data.company}</Text>
           </View>
         </View>
       </View>

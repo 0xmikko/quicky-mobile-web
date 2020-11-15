@@ -38,6 +38,9 @@ export function ContactsStack(): React.ReactElement {
       <Stack.Screen
         name={`${entityType}DetailsScreen`}
         component={() => <DMDetailsScreen type={entityType} />}
+        options={{
+            title: `${entityType}s`,
+        }}
       />
     </Stack.Navigator>
   );
