@@ -24,7 +24,7 @@ export const SplashScreen: React.FC = () => {
     <View
       style={{
         ...commonStyles.safeAreaContainerCentered,
-        backgroundColor: app.splashBackground || '#0b1535',
+        backgroundColor: app.splashBackground || '#763e9a',
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
