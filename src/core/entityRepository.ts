@@ -58,7 +58,8 @@ export class EntityRepository<T extends DataObjectWithID> {
     return async (dispatch, getState) => {
       const app = getState().app;
       const entity = app.entitiesMap[this._type];
-      const {hostName, qbToken} = getState().profile;
+      const { qbToken} = getState().profile;
+      const hostName = app.qbHostName;
 
       if (!entity.isDeployed) {
         dispatch({
@@ -104,7 +105,8 @@ export class EntityRepository<T extends DataObjectWithID> {
   ): ThunkAction<void, RootState, unknown, Action<string>> {
     return async (dispatch, getState) => {
       const app = getState().app;
-      const {hostName, qbToken} = getState().profile;
+      const { qbToken} = getState().profile;
+      const hostName = app.qbHostName;
       const entity = app.entitiesMap[this._type];
 
       if (!entity.isDeployed) {

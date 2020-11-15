@@ -9,9 +9,9 @@ import actions from '../store/actions';
 import {LoadingView} from 'rn-mobile-components';
 import {SplashScreen} from './Welcome/SplashScreen';
 import {TabBar} from '../components/TabBar';
-import {stacks} from "../core/stacks";
-import {EntityType} from "../core/types";
-import { useNavigation } from '@react-navigation/native';
+import {stacks} from '../core/stacks';
+import {EntityType} from '../core/types';
+import {useNavigation} from '@react-navigation/native';
 
 export function WebRouter(): React.ReactElement {
   const [hash, setHash] = useState('0');
@@ -24,8 +24,6 @@ export function WebRouter(): React.ReactElement {
   }, []);
 
   const app = useSelector(appSelector);
-
-
 
   if (app.tabs.length !== 0) {
     return (
