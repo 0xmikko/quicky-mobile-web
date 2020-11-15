@@ -10,6 +10,7 @@ import {commonStyles} from '../../styles';
 import {CircleButtonProps} from '../../components/CircleButtons/CircleButton';
 import {CircleButtonBlock} from '../../components/CircleButtons/CircleButtonBlock';
 import {DataListItem} from '../../components/DataListItem';
+import {DataExtraFields} from "../../components/DataExtraFields";
 
 export interface ContactDetailsViewProps {
   data: Contact;
@@ -25,10 +26,7 @@ export function ContactDetailsView({
     {icon: 'mail', title: 'Mail'},
   ];
 
-  const extraFields = data.additionalFields?.map((f) => (
-    // @ts-ignore
-    <DataListItem name={f} value={data[f]} />
-  ));
+
 
   return (
     <SafeAreaView style={commonStyles.safeAreaContainer}>
@@ -49,7 +47,7 @@ export function ContactDetailsView({
         <DataListItem name={'phone'} value={data.phone} />
         <DataListItem name={'mobile'} value={data.mobile} />
         <DataListItem name={'email'} value={data.email} />
-        {extraFields}
+        <DataExtraFields data={data} />
       </View>
     </SafeAreaView>
   );

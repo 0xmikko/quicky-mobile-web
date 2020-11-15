@@ -27,8 +27,8 @@ export class ProjectDataManager extends EntityManager<Project> {
         status: 'In progress',
         priority: 'High',
         projectCondition: 'On time',
-        startDate: Date.parse('21-09-2020') / 1000,
-        finishDate: Date.parse('16-11-2020') / 1000,
+        startDate: Date.parse('2020-09-21') / 1000,
+        finishDate: Date.parse('2020-11-16') / 1000,
       },
       {
         id: '1',
@@ -36,8 +36,8 @@ export class ProjectDataManager extends EntityManager<Project> {
         status: 'In progress',
         priority: 'High',
         projectCondition: 'On time',
-        startDate: Date.parse('21-09-2020') / 1000,
-        finishDate: Date.parse('16-11-2020') / 1000,
+        startDate: Date.parse('2020-09-21') / 1000 ,
+        finishDate: Date.parse('2020-11-16') / 1000,
       },
     ];
   }

@@ -12,6 +12,7 @@ import {CircleButtonBlock} from '../../components/CircleButtons/CircleButtonBloc
 import {DataListItem} from '../../components/DataListItem';
 import {DetailsViewComponentProps} from '../../core/types';
 import moment from 'moment';
+import {DataExtraFields} from "../../components/DataExtraFields";
 
 export function ProjectDetailsView({
   data,
@@ -37,12 +38,13 @@ export function ProjectDetailsView({
         />
         <DataListItem
           name={'Starting date'}
-          value={moment(data.startDate * 1000).format('YYYY-MM-DD')}
+          value={moment(data.startDate * 1000).format('YYYY-MM-DD').toString()}
         />
         <DataListItem
           name={'Finishing date'}
-          value={moment(data.finishDate * 1000).format('YYYY-MM-DD')}
+          value={moment(data.finishDate * 1000).format('YYYY-MM-DD').toString()}
         />
+        <DataExtraFields data={data} />
       </View>
     </SafeAreaView>
   );
