@@ -12,13 +12,8 @@ import {ScaledImage} from '../../components/ScaledImage';
 import {appSelector} from '../../store/app';
 import {Analytics} from 'rc-analytics';
 
-export const SplashScreen: React.FC = () => {
-  const dispatch = useDispatch();
+export function SplashScreen(): React.ReactElement {
   const app = useSelector(appSelector);
-
-  const onLoginPressed = () => {
-    Analytics.sendEvent('APP LOGIN', app.name);
-  };
 
   return (
     <View
@@ -30,17 +25,7 @@ export const SplashScreen: React.FC = () => {
         alignItems: 'center',
         height: Dimensions.get('window').height,
       }}>
-      {/*<ImageBackground source={require('../../assets/background.jpg')} style={styles.image} >*/}
-      <ScaledImage
-        source={{uri: app.logoUrl}}
-        height={200}
-        // style={{
-        //   height: 220,
-        //   resizeMode: 'contain',
-        //   marginBottom: 28,
-        //   marginTop: -40,
-        // }}
-      />
+      <ScaledImage source={{uri: app.logoUrl}} height={200} />
       <View style={{marginTop: 30, alignItems: 'center'}}>
         <Text style={{color: app.splashTitleColor || 'white', fontSize: 36}}>
           {app.splashTitle}
@@ -58,16 +43,15 @@ export const SplashScreen: React.FC = () => {
       <View style={styles.button}>
         <Button
           title="Login / Signup"
-          onPress={onLoginPressed}
+          onPress={() => {}}
           type="outline"
           buttonStyle={{borderColor: '#FFF'}}
           titleStyle={{color: '#FFF'}}
         />
       </View>
-      {/*</ImageBackground>*/}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {

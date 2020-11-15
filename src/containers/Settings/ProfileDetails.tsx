@@ -49,7 +49,7 @@ export const ProfileDetails: React.FC<ProfileDetailsProps> = ({data}) => {
   return (
     <>
       <View>
-        <Text h1>Profile</Text>
+        <Text h1>Settings</Text>
       </View>
       {/*<BonusCard*/}
       {/*  company={app.company}*/}
