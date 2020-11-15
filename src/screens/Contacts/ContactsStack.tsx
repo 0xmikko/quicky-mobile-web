@@ -9,7 +9,8 @@ import {EntityType} from '../../core/types';
 import {DMDetailsScreen} from '../../containers/DataScreens/DMDetailsScreen';
 import {useSelector} from 'react-redux';
 import {appSelector} from '../../store/app';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {stacks} from '../../core/stacks';
 
 const Stack = createStackNavigator();
 
@@ -17,12 +18,20 @@ const entityType: EntityType = 'Contact';
 
 export function ContactsStack(): React.ReactElement {
   const app = useSelector(appSelector);
-  const screen = app.screen;
+  const screen = app.screen as EntityType;
   const navigation = useNavigation();
 
   useEffect(() => {
     if (screen) {
-      navigation.navigate(`${screen}DetailsScreen`, {id: '0'});
+      const stackName = app.entitiesMap[screen].name;
+      if (stackName === undefined) return
+      console.log('Navigate to', screen);
+      navigation.navigate(stackName, {
+        screen: `${screen}DetailsScreen`,
+        params: {
+          id: '0',
+        },
+      });
     }
   }, [screen]);
 
@@ -39,7 +48,7 @@ export function ContactsStack(): React.ReactElement {
         name={`${entityType}DetailsScreen`}
         component={() => <DMDetailsScreen type={entityType} />}
         options={{
-            title: `${entityType}s`,
+          title: `${entityType}s`,
         }}
       />
     </Stack.Navigator>

@@ -10,7 +10,8 @@ import {commonStyles} from '../../styles';
 import {CircleButtonProps} from '../../components/CircleButtons/CircleButton';
 import {CircleButtonBlock} from '../../components/CircleButtons/CircleButtonBlock';
 import {DataListItem} from '../../components/DataListItem';
-import {DetailsViewComponentProps} from "../../core/types";
+import {DetailsViewComponentProps} from '../../core/types';
+import moment from 'moment';
 
 export function ProjectDetailsView({
   data,
@@ -31,12 +32,16 @@ export function ProjectDetailsView({
       </View>
       <View style={{marginTop: '25px'}}>
         <DataListItem
+            name={'Status'}
+            value={data.status}
+        />
+        <DataListItem
           name={'Starting date'}
-          value={data.startDate.toString()}
+          value={moment(data.startDate * 1000).format('YYYY-MM-DD')}
         />
         <DataListItem
           name={'Finishing date'}
-          value={data.finishDate.toString()}
+          value={moment(data.finishDate * 1000).format('YYYY-MM-DD')}
         />
       </View>
     </SafeAreaView>

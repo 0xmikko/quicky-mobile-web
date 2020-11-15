@@ -4,8 +4,8 @@
 
 import {isContain} from '../helpers/search';
 import {EntityManager} from '../core/entityManager';
-import {ProjectListItem} from "../screens/Projects/ProjectsListItem";
-import {ProjectDetailsView} from "../screens/Projects/ProjectDetailsView";
+import {ProjectListItem} from '../screens/Projects/ProjectsListItem';
+import {ProjectDetailsView} from '../screens/Projects/ProjectDetailsView';
 
 export class Project {
   id: string;
@@ -27,8 +27,8 @@ export class ProjectDataManager extends EntityManager<Project> {
         status: 'In progress',
         priority: 'High',
         projectCondition: 'On time',
-        startDate: Date.parse('21-09-2020'),
-        finishDate: Date.parse('16-11-2020'),
+        startDate: Date.parse('21-09-2020') / 1000,
+        finishDate: Date.parse('16-11-2020') / 1000,
       },
       {
         id: '1',
@@ -36,8 +36,8 @@ export class ProjectDataManager extends EntityManager<Project> {
         status: 'In progress',
         priority: 'High',
         projectCondition: 'On time',
-        startDate: Date.parse('21-09-2020'),
-        finishDate: Date.parse('16-11-2020'),
+        startDate: Date.parse('21-09-2020') / 1000,
+        finishDate: Date.parse('16-11-2020') / 1000,
       },
     ];
   }

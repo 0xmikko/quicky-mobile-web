@@ -25,8 +25,6 @@ export function TabBar({
   activeColor,
   inactiveColor,
 }: TabBarProps): React.ReactElement {
-
-
   const icons: Record<string, string> = {};
 
   buttons.forEach((b) => (icons[b.name] = b.icon));
@@ -46,14 +44,11 @@ export function TabBar({
             // You can return any component that you like here!
             return <Icon name={iconName || ''} size={size} color={color} />;
           },
-
         })}
         tabBarOptions={{
           activeTintColor: activeColor || '#0176f4',
           inactiveTintColor: inactiveColor || 'gray',
-        }}
-
-      >
+        }}>
         {screens}
       </Tab.Navigator>
     </View>
