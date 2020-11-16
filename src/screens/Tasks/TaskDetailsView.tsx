@@ -5,7 +5,7 @@
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {Text} from 'react-native-elements';
-import {Project} from '../../entities/project';
+import {Task} from '../../entities/task';
 import {commonStyles} from '../../styles';
 import {CircleButtonProps} from '../../components/CircleButtons/CircleButton';
 import {CircleButtonBlock} from '../../components/CircleButtons/CircleButtonBlock';
@@ -14,13 +14,14 @@ import {DetailsViewComponentProps} from '../../core/types';
 import moment from 'moment';
 import {DataExtraFields} from "../../components/DataExtraFields";
 
-export function ProjectDetailsView({
+export function TaskDetailsView({
   data,
-}: DetailsViewComponentProps<Project>): React.ReactElement {
+}: DetailsViewComponentProps<Task>): React.ReactElement {
   console.log('DATA', data);
   const actions: Array<CircleButtonProps> = [
-    {icon: 'add', title: 'New task'},
-    {icon: 'done', title: 'Finish'},
+    {icon: 'done', title: 'Done'},
+    {icon: 'alarm', title: 'Notifications'},
+    {icon: 'schedule', title: 'Postpone'},
   ];
   return (
     <SafeAreaView style={commonStyles.safeAreaContainer}>
@@ -36,12 +37,12 @@ export function ProjectDetailsView({
             value={data.status}
         />
         <DataListItem
-          name={'Starting date'}
-          value={moment(data.startDate * 1000).format('YYYY-MM-DD').toString()}
+          name={'Description'}
+          value={data.description}
         />
         <DataListItem
-          name={'Finishing date'}
-          value={moment(data.finishDate * 1000).format('YYYY-MM-DD').toString()}
+          name={'Deadline'}
+          value={moment(data.deadline * 1000).format('YYYY-MM-DD').toString()}
         />
         <DataExtraFields data={data} />
       </View>

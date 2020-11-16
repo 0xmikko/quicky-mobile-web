@@ -11,5 +11,6 @@ import {ContactsStack} from "../screens/Contacts/ContracsStack";
 export const stacks: Record<EntityType, () => React.ReactElement> = {
   Contact: ContactsStack,
   Project: createEntityStack('Project'),
+  Task: createEntityStack('Task'),
   Setting: SettingsStack,
 };
