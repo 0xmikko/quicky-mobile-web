@@ -17,14 +17,14 @@ export class TaskDataManager extends EntityManager<Task> {
         name: 'Setup facebook campaign',
         description: '',
         status: 'In progress',
-        deadline: Date.parse('2020-11-16') / 1000,
+        deadline: Date.parse('2020-11-16'),
       },
       {
         id: '1',
         name: 'QB Hackathon',
         description: '',
         status: 'In progress',
-        deadline: Date.parse('2020-11-16') / 1000,
+        deadline: Date.parse('2020-11-16'),
       },
     ];
   }

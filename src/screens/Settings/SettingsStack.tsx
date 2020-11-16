@@ -4,8 +4,7 @@
 
 import React, {useEffect} from 'react';
 import {Profile} from '../../core/profile';
-import {ProfileScreen} from './ProfileScreen';
-import {ChangeNameScreen} from './ChangeNameScreen';
+import {SettingsScreen} from './SettingsScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
 import {appSelector} from '../../store/app';
@@ -14,9 +13,6 @@ import {useNavigation} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
-export type SettingsStackParamList = {
-  ChangeNameScreen: {data: Profile};
-};
 
 export function SettingsStack(): React.ReactElement {
   const app = useSelector(appSelector);
@@ -41,16 +37,9 @@ export function SettingsStack(): React.ReactElement {
     <Stack.Navigator>
       <Stack.Screen
         name="SettingsScreen"
-        component={ProfileScreen}
+        component={SettingsScreen}
         options={{
           header: () => null,
-        }}
-      />
-      <Stack.Screen
-        name="ChangeNameScreen"
-        component={ChangeNameScreen}
-        options={{
-          title: 'Changing name',
         }}
       />
     </Stack.Navigator>

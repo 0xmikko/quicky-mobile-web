@@ -98,7 +98,7 @@ export class EntityRepository<T extends DataObjectWithID> {
         query=`{${fieldNum}.EX.${foreignKeyId}`
       }
 
-      const resultValidated = await this._getRecords(entity, hostName, qbToken);
+      const resultValidated = await this._getRecords(entity, hostName, qbToken, query);
 
       dispatch({
         type: this.prefix + LIST_SUCCESS,
