@@ -58,7 +58,7 @@ export class EntityRepository<T extends DataObjectWithID> {
     return async (dispatch, getState) => {
       const app = getState().app;
       const entity = app.entitiesMap[this._type];
-      const { qbToken} = getState().profile;
+      const {qbToken} = getState().profile;
       const hostName = app.qbHostName;
 
       if (!entity.isDeployed) {
@@ -105,7 +105,7 @@ export class EntityRepository<T extends DataObjectWithID> {
   ): ThunkAction<void, RootState, unknown, Action<string>> {
     return async (dispatch, getState) => {
       const app = getState().app;
-      const { qbToken} = getState().profile;
+      const {qbToken} = getState().profile;
       const hostName = app.qbHostName;
       const entity = app.entitiesMap[this._type];
 
@@ -131,25 +131,31 @@ export class EntityRepository<T extends DataObjectWithID> {
         return;
       }
 
-      const singleQuery = `<rid>1</rid>`;
+      const singleQuery = `{'3'.EX.'${id}'}`;
 
-      const resultValidated = await this._getRecords(entity, hostName, qbToken, singleQuery);
+      const resultValidated = await this._getRecords(
+        entity,
+        hostName,
+        qbToken,
+        singleQuery,
+      );
 
-      console.log("RVR", resultValidated)
+      console.log('RVR', resultValidated);
 
       if (resultValidated.length === 0) {
-          dispatch(
-              updateStatus(opHash, 'STATUS.FAILURE', 'Item not found'),
-          );
-          return;
+        dispatch(updateStatus(opHash, 'STATUS.FAILURE', 'Item not found'));
+        return;
       }
 
-        dispatch({
-            type: this.prefix + DETAIL_SUCCESS,
-            payload: resultValidated[0],
-        });
-        dispatch(updateStatus(opHash, 'STATUS.SUCCESS'));
+      dispatch({
+        type: this.prefix + DETAIL_SUCCESS,
+        payload: {
+          ...resultValidated[0],
+          id
+        },
 
+      });
+      dispatch(updateStatus(opHash, 'STATUS.SUCCESS'));
     };
   }
 
@@ -177,10 +183,11 @@ export class EntityRepository<T extends DataObjectWithID> {
       entity.tableId,
       hostName,
       qbToken,
-      this._fieldArray(entity.dataMapper),
+      [...this._fieldArray(entity.dataMapper), 10, 11, 12],
       query || '',
     );
 
+    console.log('GOT RECORDS!!!!', result);
     const resultStructed = result.data.map((row) => {
       const obj: Record<string, any> = {};
       for (let mapper of Object.entries(entity.dataMapper)) {
@@ -196,7 +203,7 @@ export class EntityRepository<T extends DataObjectWithID> {
       this._entityClass,
       resultStructed,
     )) as T[];
-    console.log('RECORDS',query,  resultValidated);
+    console.log('RECORDS', query, resultValidated);
     return resultValidated;
   }
 

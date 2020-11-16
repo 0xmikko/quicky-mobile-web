@@ -11,6 +11,7 @@ import {CircleButtonProps} from '../../components/CircleButtons/CircleButton';
 import {CircleButtonBlock} from '../../components/CircleButtons/CircleButtonBlock';
 import {DataListItem} from '../../components/DataListItem';
 import {DataExtraFields} from "../../components/DataExtraFields";
+import {ContactProjectsWidget} from "./ContactProjectsWidget";
 
 export interface ContactDetailsViewProps {
   data: Contact;
@@ -48,6 +49,7 @@ export function ContactDetailsView({
         <DataListItem name={'mobile'} value={data.mobile} />
         <DataListItem name={'email'} value={data.email} />
         <DataExtraFields data={data} />
+        <ContactProjectsWidget />
       </View>
     </SafeAreaView>
   );
