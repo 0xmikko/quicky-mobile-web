@@ -54,6 +54,8 @@ export class EntityRepository<T extends DataObjectWithID> {
 
   getListAction(
     opHash: string,
+    foreignKeyName?: string,
+    foreignKeyId?: string,
   ): ThunkAction<void, RootState, unknown, Action<string>> {
     return async (dispatch, getState) => {
       const app = getState().app;
@@ -71,6 +73,7 @@ export class EntityRepository<T extends DataObjectWithID> {
         return;
       }
 
+
       if (hostName === undefined) {
         dispatch(
           updateStatus(opHash, 'STATUS.FAILURE', 'Host name is not set'),
@@ -82,6 +85,17 @@ export class EntityRepository<T extends DataObjectWithID> {
           updateStatus(opHash, 'STATUS.FAILURE', 'User token is not set'),
         );
         return;
+      }
+
+      let query = '';
+
+      if (foreignKeyName && foreignKeyId) {
+        const fieldEntity = Object.entries(entity.dataMapper).filter(e =>
+          e[1].label === foreignKeyName
+        )
+        if (fieldEntity.length === 0) throw new Error("No foreign key was found");
+        const fieldNum = fieldEntity[0][0];
+        query=`{${fieldNum}.EX.${foreignKeyId}`
       }
 
       const resultValidated = await this._getRecords(entity, hostName, qbToken);

@@ -11,8 +11,15 @@ import {useSelector} from 'react-redux';
 import {appSelector} from '../store/app';
 import {useNavigation} from '@react-navigation/native';
 
+export interface ExtraScreenProps {
+  name: string;
+  component: () => React.ReactElement;
+  title: string;
+}
+
 export function createEntityStack(
   entityType: EntityType,
+  extraScreens?: Array<ExtraScreenProps>,
 ): () => React.ReactElement {
   const Stack = createStackNavigator();
   return () => {
@@ -34,6 +41,24 @@ export function createEntityStack(
       }
     }, [screen]);
 
+    const extraScreenRendered = (extraScreens || []).map((es) => (
+      <Stack.Screen
+        name={es.name}
+        component={es.component}
+        options={{
+          title: es.title,
+        }}
+      />
+    ));
+
+    const detailsScreens = app.entities.map(e =>   <Stack.Screen
+        name={`${e.type}DetailsScreen`}
+        component={() => <DMDetailsScreen type={e.type} />}
+        options={{
+            title: `${e.name}`,
+        }}
+    />)
+
     return (
       <Stack.Navigator>
         <Stack.Screen
@@ -43,13 +68,8 @@ export function createEntityStack(
             header: () => null,
           }}
         />
-        <Stack.Screen
-          name={`${entityType}DetailsScreen`}
-          component={() => <DMDetailsScreen type={entityType} />}
-          options={{
-            title: `${entityType}s`,
-          }}
-        />
+          {detailsScreens}
+        {extraScreenRendered}
       </Stack.Navigator>
     );
   };

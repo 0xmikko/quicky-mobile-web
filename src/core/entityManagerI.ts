@@ -20,6 +20,8 @@ export interface EntityManagerI<T extends DataObjectWithID> {
 
     getListAction(
         opHash: string,
+        foreignKeyName?: string,
+        foreignKeyId?: string,
     ): ThunkAction<void, RootState, unknown, Action<string>>;
 
     getListSelector(): (state: RootState) => T[];

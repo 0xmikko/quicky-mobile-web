@@ -2,7 +2,7 @@
  * Copyright (c) 2020, Mikael Lazarev
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {DataListView} from 'rn-mobile-components/lib/DataListView';
@@ -12,7 +12,6 @@ import {SearchBar, Text} from 'react-native-elements';
 import {AppDataManager} from '../../core/dataManager';
 import {DMDataScreenProps} from './types';
 import {appSelector} from '../../store/app';
-import {EntityType} from '../../core/types';
 
 export function DMListScreen({type}: DMDataScreenProps): React.ReactElement {
   const navigation = useNavigation();
@@ -31,7 +30,12 @@ export function DMListScreen({type}: DMDataScreenProps): React.ReactElement {
   };
 
   const onSelect = async (id: string) => {
-    navigation.navigate(`${type}DetailsScreen`, {id});
+    navigation.navigate(stackName, {
+      screen: `${type}DetailsScreen`,
+      params: {
+        id,
+      },
+    });
   };
 
   return (
